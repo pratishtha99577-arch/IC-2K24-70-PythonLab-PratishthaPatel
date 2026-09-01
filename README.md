@@ -2,7 +2,7 @@
 
 ## Python Lab Work
 
-This repository contains my Python laboratory programs and documentation for Lab 1, Lab 2, Lab 3, and Lab 4.
+This repository contains my Python laboratory programs and documentation for Lab 1, Lab 2, Lab 3, Lab 4, and Lab 6.
 
 ### Student Details
 
@@ -151,6 +151,51 @@ Detailed documentation and sample outputs are available in:
 
 ---
 
+# Lab 6
+
+Lab 6 focuses on menu-driven applications, random number generation, binary-search logic, validation, scoring systems, and combining multiple applications into one program.
+
+### Lab 6 Programs
+
+The Lab 6 programs are stored inside the `Lab6` folder.
+
+1. `atm_simulation.py`
+2. `grade_calculator.py`
+3. `reverse_guessing.py`
+4. `guessing_game_hints.py`
+5. `combined_application.py`
+
+### Lab 6 Topics
+
+- ATM simulation
+- Menu-driven applications
+- Account balance management
+- Deposit and withdrawal operations
+- PIN management
+- Transaction validation
+- Student grade calculation
+- Average and grade calculation
+- Storing the most recently entered student's data
+- Reverse guessing game
+- Binary-search style guessing
+- Random number generation
+- Guessing game with hints
+- Even/odd hints
+- Multiple-of-5 hints
+- Score calculation
+- Maximum attempt limits
+- Combining multiple applications
+- Returning control to a top-level menu
+- Functions
+- Loops
+- Input validation
+
+Detailed documentation, Section A concept answers, Section B trace solutions, Section D analysis answers, and sample inputs/outputs are available in:
+
+`Lab6/README.md`
+
+---
+
 # Repository Structure
 
 ```text
@@ -186,6 +231,14 @@ IC-2K24-70-PythonLab-PratishthaPatel/
 ├── Lab4/
 │   ├── star_pattern.py
 │   ├── matrix_operations.py
+│   └── README.md
+│
+├── Lab6/
+│   ├── atm_simulation.py
+│   ├── grade_calculator.py
+│   ├── reverse_guessing.py
+│   ├── guessing_game_hints.py
+│   ├── combined_application.py
 │   └── README.md
 │
 └── README.md
