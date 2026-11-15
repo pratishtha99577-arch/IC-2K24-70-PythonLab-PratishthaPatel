@@ -1,78 +1,28 @@
-# Lab 6 - Guessing Game with Hints and Scoring
-# The computer selects a random number and gives
-# even/odd and multiple-of-5 hints after wrong guesses.
-
-
 import random
 
+num = random.randint(1, 50)
+score = 100
 
-def get_guess(lower, upper):
-    """Take and validate the user's guess."""
+while True:
+    guess = int(input("Guess a number (1-50): "))
 
-    while True:
-        try:
-            guess = int(input(f"Enter your guess ({lower}-{upper}): "))
+    if guess == num:
+        print("Correct Guess!")
+        print("Your score =", score)
+        break
 
-            if lower <= guess <= upper:
-                return guess
+    else:
+        score = score - 10
 
-            print(f"Please enter a number between {lower} and {upper}.")
-
-        except ValueError:
-            print("Invalid input. Please enter an integer.")
-
-
-def guessing_game():
-    """Run the guessing game."""
-
-    lower = 1
-    upper = 100
-    maximum_attempts = 7
-
-    secret_number = random.randint(lower, upper)
-    score = 100
-
-    print("\n===== GUESSING GAME WITH HINTS =====")
-    print(f"I selected a number between {lower} and {upper}.")
-    print(f"You have {maximum_attempts} attempts.")
-    print("You start with 100 points.")
-    print("Each wrong guess costs 10 points.")
-
-    for attempt in range(1, maximum_attempts + 1):
-
-        print(f"\nAttempt {attempt} of {maximum_attempts}")
-
-        guess = get_guess(lower, upper)
-
-        if guess == secret_number:
-            print("\nCorrect!")
-            print(f"You guessed the number in {attempt} attempts.")
-            print(f"Final score: {score}")
-            return
-
-        score -= 10
-
-        if guess < secret_number:
-            print("Too low!")
+        if num % 2 == 0:
+            print("Hint: Number is Even")
         else:
-            print("Too high!")
+            print("Hint: Number is Odd")
 
-        # Even / odd hint
-        if secret_number % 2 == 0:
-            print("Hint: The secret number is even.")
+        if num % 5 == 0:
+            print("Hint: Number is a multiple of 5")
         else:
-            print("Hint: The secret number is odd.")
+            print("Hint: Number is not a multiple of 5")
 
-        # Multiple of 5 hint
-        if secret_number % 5 == 0:
-            print("Hint: The secret number is a multiple of 5.")
-        else:
-            print("Hint: The secret number is not a multiple of 5.")
-
-    print("\nYou lost!")
-    print(f"The secret number was {secret_number}.")
-    print("Final score: 0")
-
-
-if __name__ == "__main__":
-    guessing_game()
+        print("Wrong Guess! Try again.")
+        print("Remaining score =", score)
