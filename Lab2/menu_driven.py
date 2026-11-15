@@ -1,267 +1,146 @@
-# This program combines the Lab 2 programs into a menu-driven application.
+import random
 
+while True:
+    print("\n--- MENU ---")
+    print("1. Armstrong Number")
+    print("2. Fibonacci Series")
+    print("3. Number Guessing Game")
+    print("4. Concentric Number Square")
+    print("5. Palindrome Number")
+    print("6. Patterns")
+    print("7. Prime Number")
+    print("8. Perfect Number")
+    print("9. Exit")
 
-def is_armstrong(number):
-    """Return True if the number is an Armstrong number."""
+    ch = int(input("Enter your choice: "))
 
-    if number < 0:
-        return False
+    if ch == 1:
+        num = int(input("Enter number: "))
+        temp = num
+        s = 0
 
-    original = number
-    digits = len(str(number))
-    total = 0
+        while temp > 0:
+            digit = temp % 10
+            s = s + digit ** 3
+            temp = temp // 10
 
-    if number == 0:
-        return True
+        if s == num:
+            print("Armstrong Number")
+        else:
+            print("Not Armstrong Number")
 
-    while number > 0:
-        digit = number % 10
-        total += digit ** digits
-        number //= 10
+    elif ch == 2:
+        n = int(input("Enter terms: "))
+        a = 0
+        b = 1
 
-    return total == original
-
-
-def is_prime(number):
-    """Return True if the number is prime."""
-
-    if number < 2:
-        return False
-
-    if number == 2:
-        return True
-
-    if number % 2 == 0:
-        return False
-
-    divisor = 3
-
-    while divisor * divisor <= number:
-        if number % divisor == 0:
-            return False
-        divisor += 2
-
-    return True
-
-
-def is_perfect(number):
-    """Return True if the number is a perfect number."""
-
-    if number <= 1:
-        return False
-
-    divisor_sum = 1
-    divisor = 2
-
-    while divisor * divisor <= number:
-        if number % divisor == 0:
-            divisor_sum += divisor
-
-            other_divisor = number // divisor
-
-            if other_divisor != divisor:
-                divisor_sum += other_divisor
-
-        divisor += 1
-
-    return divisor_sum == number
-
-
-def is_number_palindrome(number):
-    """Check whether a number is a palindrome using arithmetic."""
-
-    if number < 0:
-        return False
-
-    original = number
-    reversed_number = 0
-
-    while number > 0:
-        digit = number % 10
-        reversed_number = reversed_number * 10 + digit
-        number //= 10
-
-    return original == reversed_number
-
-
-def is_string_palindrome(text):
-    """Return True if the string is a palindrome."""
-
-    text = text.lower()
-    return text == text[::-1]
-
-
-def fibonacci_loop(n):
-    """Return the first n Fibonacci terms using a loop."""
-
-    series = []
-    first = 0
-    second = 1
-
-    for _ in range(n):
-        series.append(first)
-        first, second = second, first + second
-
-    return series
-
-
-def fibonacci_recursive(n):
-    """Return the nth Fibonacci number using recursion."""
-
-    if n <= 1:
-        return n
-
-    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
-
-
-def get_integer(prompt):
-    """Take and validate an integer."""
-
-    while True:
-        try:
-            return int(input(prompt))
-        except ValueError:
-            print("Invalid input. Please enter an integer.")
-
-
-def get_positive_integer(prompt):
-    """Take and validate a positive integer."""
-
-    while True:
-        number = get_integer(prompt)
-
-        if number > 0:
-            return number
-
-        print("Please enter a positive integer.")
-
-
-def print_patterns(rows):
-    """Print the three required patterns."""
-
-    print("\n1. Right-Angled Triangle")
-
-    for row in range(1, rows + 1):
-        for _ in range(row):
-            print("*", end=" ")
+        for i in range(n):
+            print(a, end=" ")
+            c = a + b
+            a = b
+            b = c
         print()
 
-    print("\n2. Number Pattern")
+    elif ch == 3:
+        num = random.randint(1, 100)
 
-    for row in range(1, rows + 1):
-        for number in range(1, row + 1):
-            print(number, end=" ")
-        print()
+        for i in range(7):
+            guess = int(input("Guess number: "))
 
-    print("\n3. Centered Pyramid")
-
-    for row in range(1, rows + 1):
-        for _ in range(rows - row):
-            print(" ", end=" ")
-
-        for _ in range(2 * row - 1):
-            print("*", end=" ")
-
-        print()
-
-
-def main():
-    """Run the menu-driven application."""
-
-    while True:
-        print("\n========== LAB 2 MENU ==========")
-        print("1. Armstrong Number")
-        print("2. Prime Number")
-        print("3. Perfect Number")
-        print("4. Palindrome")
-        print("5. Fibonacci Series")
-        print("6. Pattern Printing")
-        print("7. Exit")
-        print("================================")
-
-        choice = input("Enter your choice: ")
-
-        if choice == "1":
-            number = get_integer("Enter a number: ")
-
-            if number < 0:
-                print("Please enter a non-negative number.")
-                continue
-
-            if is_armstrong(number):
-                print(f"{number} is an Armstrong number.")
+            if guess == num:
+                print("Correct Guess!")
+                break
+            elif guess > num:
+                print("Too High")
             else:
-                print(f"{number} is not an Armstrong number.")
+                print("Too Low")
+        else:
+            print("Game Over! Number was", num)
 
-        elif choice == "2":
-            number = get_integer("Enter a number: ")
+    elif ch == 4:
+        n = int(input("Enter size: "))
 
-            if is_prime(number):
-                print(f"{number} is a prime number.")
-            else:
-                print(f"{number} is not a prime number.")
+        for i in range(2*n-1):
+            for j in range(2*n-1):
+                print(max(abs(n-1-i), abs(n-1-j))+1, end=" ")
+            print()
 
-        elif choice == "3":
-            number = get_positive_integer("Enter a positive number: ")
+    elif ch == 5:
+        num = int(input("Enter number: "))
+        temp = num
+        rev = 0
 
-            if is_perfect(number):
-                print(f"{number} is a perfect number.")
-            else:
-                print(f"{number} is not a perfect number.")
+        while temp > 0:
+            digit = temp % 10
+            rev = rev * 10 + digit
+            temp = temp // 10
 
-        elif choice == "4":
-            print("\n1. Number Palindrome")
-            print("2. String Palindrome")
+        if num == rev:
+            print("Palindrome Number")
+        else:
+            print("Not Palindrome")
 
-            palindrome_choice = input("Enter your choice: ")
+    elif ch == 6:
+        n = int(input("Enter rows: "))
 
-            if palindrome_choice == "1":
-                number = get_integer("Enter a non-negative number: ")
+        print("1. Star Triangle")
+        print("2. Number Pattern")
+        print("3. Centered Pyramid")
 
-                if number < 0:
-                    print("Please enter a non-negative number.")
-                elif is_number_palindrome(number):
-                    print(f"{number} is a palindrome.")
-                else:
-                    print(f"{number} is not a palindrome.")
+        p = int(input("Choose pattern: "))
 
-            elif palindrome_choice == "2":
-                text = input("Enter a string: ")
+        if p == 1:
+            for i in range(1, n+1):
+                for j in range(i):
+                    print("*", end=" ")
+                print()
 
-                if is_string_palindrome(text):
-                    print(f'"{text}" is a palindrome.')
-                else:
-                    print(f'"{text}" is not a palindrome.')
+        elif p == 2:
+            for i in range(1, n+1):
+                for j in range(1, i+1):
+                    print(j, end=" ")
+                print()
 
-            else:
-                print("Invalid palindrome choice.")
-
-        elif choice == "5":
-            n = get_positive_integer("Enter the number of Fibonacci terms: ")
-
-            print("\nFibonacci using loop:")
-            print(*fibonacci_loop(n))
-
-            if n <= 20:
-                print("\nFibonacci using recursion:")
-                recursive_series = [
-                    fibonacci_recursive(i) for i in range(n)
-                ]
-                print(*recursive_series)
-            else:
-                print("\nRecursive version skipped for large n.")
-
-        elif choice == "6":
-            rows = get_positive_integer("Enter the number of rows: ")
-            print_patterns(rows)
-
-        elif choice == "7":
-            print("Exiting the Lab 2 application. Goodbye!")
-            break
+        elif p == 3:
+            for i in range(1, n+1):
+                for j in range(n-i):
+                    print(" ", end="")
+                for k in range(2*i-1):
+                    print("*", end="")
+                print()
 
         else:
-            print("Invalid menu choice. Please select an option from 1 to 7.")
+            print("Invalid Pattern Choice")
 
+    elif ch == 7:
+        num = int(input("Enter number: "))
 
-if __name__ == "__main__":
-    main()
+        if num > 1:
+            for i in range(2, num):
+                if num % i == 0:
+                    print("Not Prime")
+                    break
+            else:
+                print("Prime Number")
+        else:
+            print("Not Prime")
+
+    elif ch == 8:
+        num = int(input("Enter number: "))
+        s = 0
+
+        for i in range(1, num):
+            if num % i == 0:
+                s = s + i
+
+        if s == num and num > 0:
+            print("Perfect Number")
+        else:
+            print("Not Perfect Number")
+
+    elif ch == 9:
+        print("Thank You!")
+        break
+
+    else:
+        print("Invalid Choice! Try Again.")
